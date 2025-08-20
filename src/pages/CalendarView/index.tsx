@@ -8,8 +8,8 @@ export interface CalendarViewProps {
   events: Parameters<typeof Calendar>[0]['events'];
   activeView: `${typeof Views[keyof typeof Views]}`;
   currentDate: Date;
-  onView: (v: `${typeof Views[keyof typeof Views]}` | 'WORK_WEEK') => void;
-  onNavigate: (date: Date) => void;
+  handleView: (v: `${typeof Views[keyof typeof Views]}` | 'WORK_WEEK') => void;
+  handleNavigate: (date: Date) => void;
   onToday: () => void;
   handleSelectEvent: Parameters<typeof Calendar>[0]['handleSelectEvent'];
   isModalOpen: boolean;
@@ -24,8 +24,8 @@ export default function CalendarView(props: CalendarViewProps) {
     events,
     activeView,
     currentDate,
-    onView,
-    onNavigate,
+    handleNavigate,
+    handleView,
     onToday,
     handleSelectEvent,
     isModalOpen,
@@ -38,14 +38,14 @@ export default function CalendarView(props: CalendarViewProps) {
   return (
     <div style={{ padding: 16 }}>
       <h1>Calendar 360</h1>
-      <ViewTogglerButton activeView={activeView} onToday={onToday} onView={onView} />
+      <ViewTogglerButton activeView={activeView} onToday={onToday} onView={handleView} />
       <Calendar
         events={events}
         defaultView="MONTH"
         view={activeView}
         date={currentDate}
-        onView={onView}
-        onNavigate={onNavigate}
+        onView={handleView}
+        onNavigate={handleNavigate}
         views={[ 'MONTH', 'WEEK', 'DAY' ]}
         handleSelectEvent={handleSelectEvent}
         style={{ height: 500 }}

@@ -55,7 +55,6 @@ export default function CalendarViewContainer() {
     }
   };
 
-  const handleCloseModal = () => setIsModalOpen(false);
 
   const labels = useMemo(() => {
     if (!selectedDateKey) return [] as string[];
@@ -73,15 +72,15 @@ export default function CalendarViewContainer() {
     events,
     activeView,
     currentDate,
-    onView: (v) => setActiveView(v as CalendarViewType),
-    onNavigate: (date) => setCurrentDate(date),
-    onToday: () => setCurrentDate(new Date()),
-    handleSelectEvent,
     isModalOpen,
-    handleCloseModal,
     selectedDateKey: (selectedDateKey as string | null),
     labels,
-    values
+    values,
+    handleSelectEvent,
+    handleView: (v) => setActiveView(v as CalendarViewType),
+    handleNavigate: (date) => setCurrentDate(date),
+    onToday: () => setCurrentDate(new Date()),
+    handleCloseModal: () => setIsModalOpen(false),
   };
 
   return <CalendarView {...props} />;
