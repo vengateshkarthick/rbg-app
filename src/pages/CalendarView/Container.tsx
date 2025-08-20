@@ -79,7 +79,7 @@ export default function CalendarViewContainer() {
     handleSelectEvent,
     handleView: (v) => setActiveView(v as CalendarViewType),
     handleNavigate: (date) => setCurrentDate(date),
-    onToday: () => setCurrentDate(new Date()),
+    handleSetToday: () => setCurrentDate(new Date()),
     handleCloseModal: () => setIsModalOpen(false),
   };
 
