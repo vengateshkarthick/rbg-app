@@ -5,9 +5,9 @@ Here’s a comprehensive **README.md** and **package.json** setup for your proje
 ## README.md
 
 ```markdown
-# DataViz Calendar
+# Calendar 360
 
-**DataViz Calendar** is a React application that visualizes date-wise data using **React Big Calendar**. Users can view data on a daily, weekly, or monthly basis. Clicking on a date with data will display a bar graph for that date. If no data is available, a warning message is shown.
+**Calendar 360** is a React application that visualizes date-wise data using **React Big Calendar**. Users can view data on a daily, weekly, or monthly basis. Clicking on a date with data will display a bar graph for that date. If no data is available, a warning message is shown.
 
 ---
 
