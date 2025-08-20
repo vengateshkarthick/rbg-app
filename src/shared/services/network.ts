@@ -17,7 +17,7 @@ export class HttpRequest {
       // Ensure headers object exists without violating Axios types
       config.headers = (config.headers ?? ({} as any)) as any;
       if (this.bearerToken) {
-        (config.headers as any).['X-Master-Key'] = this.bearerToken;
+        (config.headers as any)['X-Master-Key'] = this.bearerToken;
       }
       return config;
     });
@@ -42,9 +42,8 @@ export class HttpRequest {
   }
 }
 
-export const httpRequest = new HttpRequest();
-// Backward compatible alias
-export const network = httpRequest;
+export const httpRequest = new HttpRequest(ENV_TOKEN);
+
 
 // Backward-compatible helper
 export async function doget<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {

@@ -1,6 +1,6 @@
-import { parse, format } from 'date-fns';
-import Modal from '../../../../shared/widgets/Modal';
-import { BarGraph } from '../../../../shared/widgets/Chart';
+import { parse, format } from "date-fns";
+import Modal from "../../../../shared/widgets/Modal";
+import { BarGraph } from "../../../../shared/widgets/Chart";
 
 export interface DataViewModalProps {
   isOpen: boolean;
@@ -10,27 +10,50 @@ export interface DataViewModalProps {
   values: number[];
 }
 
-export default function DataViewModal({ isOpen, onRequestClose, selectedDateKey, labels, values }: DataViewModalProps) {
+export default function DataViewModal({
+  isOpen,
+  onRequestClose,
+  selectedDateKey,
+  labels,
+  values,
+}: DataViewModalProps) {
   return (
-    <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Data Visualization">
+    <Modal
+      isOpen={isOpen}
+      shouldHideOnOutsideClick
+      onRequestClose={onRequestClose}
+      contentLabel="Data Visualization"
+    >
+        <button 
+         style={{
+            display:'flex',
+            borderRadius: '6px',
+            padding: '1rem 1.5rem'
+         }}
+        onClick={onRequestClose}>X</button>
       <h2>
-        {selectedDateKey ? `Data for ${format(parse(selectedDateKey as string, 'dd-MM-yyyy', new Date()), 'dd-MM-yyyy')}` : 'No date selected'}
+        {selectedDateKey
+          ? `Data for ${format(
+              parse(selectedDateKey as string, "dd-MM-yyyy", new Date()),
+              "dd-MM-yyyy"
+            )}`
+          : "No date selected"}
       </h2>
       {selectedDateKey ? (
         <BarGraph
           labels={labels}
           datasets={[
             {
-              label: 'Available dates',
+              label: "Available dates",
               data: values,
-              backgroundColor: 'rgba(75, 192, 192, 0.6)'
-            }
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+            },
           ]}
         />
       ) : (
         <p>No data found for the selected date.</p>
       )}
-      <button onClick={onRequestClose}>Close</button>
+      
     </Modal>
   );
 }

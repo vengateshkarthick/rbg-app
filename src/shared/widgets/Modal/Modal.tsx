@@ -38,13 +38,30 @@ export default function Modal({
         }
     }, [ariaHideApp, appElementSelector]);
 
+    const defaultStyle: Styles = {
+        overlay: {
+            backgroundColor: 'rgba(17, 24, 39, 0.55)',
+            zIndex: 9999
+        },
+        content: {
+            borderRadius: '8px'
+        }
+    };
+
+    const mergedStyle: Styles | undefined = style
+        ? {
+              overlay: { ...(defaultStyle.overlay || {}), ...(style.overlay || {}) },
+              content: { ...(defaultStyle.content || {}), ...(style.content || {}) }
+          }
+        : defaultStyle;
+
     return (
         <ReactModal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel={contentLabel}
             shouldCloseOnOverlayClick={shouldHideOnOutsideClick}
-            style={style}
+            style={mergedStyle}
             className={className}
             overlayClassName={overlayClassName}
             onAfterOpen={onAfterOpen}
