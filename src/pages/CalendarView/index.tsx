@@ -2,12 +2,14 @@ import { format, parse } from 'date-fns';
 import Calendar from '../../shared/widgets/Calendar';
 import Modal from '../../shared/widgets/Modal';
 import { BarGraph } from '../../shared/widgets/Chart';
+import Button from '../../shared/widgets/Button';
+import { Views } from './constant';
 
 export interface CalendarViewProps {
   events: Parameters<typeof Calendar>[0]['events'];
-  activeView: 'MONTH' | 'WEEK' | 'DAY' | 'AGENDA';
+  activeView: `${typeof Views[keyof typeof Views]}`;
   currentDate: Date;
-  onView: (v: 'MONTH' | 'WEEK' | 'DAY' | 'AGENDA' | 'WORK_WEEK') => void;
+  onView: (v: `${typeof Views[keyof typeof Views]}` | 'WORK_WEEK') => void;
   onNavigate: (date: Date) => void;
   onToday: () => void;
   handleSelectEvent: Parameters<typeof Calendar>[0]['handleSelectEvent'];
@@ -38,11 +40,11 @@ export default function CalendarView(props: CalendarViewProps) {
     <div style={{ padding: 16 }}>
       <h1>Calendar 360</h1>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 12 }}>
-        <button onClick={onToday}>Today</button>
-        <button onClick={() => onView('MONTH')}>Month</button>
-        <button onClick={() => onView('WEEK')}>Week</button>
-        <button onClick={() => onView('DAY')}>Day</button>
-        <button onClick={() => onView('AGENDA')}>Agenda</button>
+        <Button onClick={onToday} variant="outline">Today</Button>
+        <Button onClick={() => onView(Views.MONTH)} variant={activeView === Views.MONTH ? 'primary' : 'outline'}>Month</Button>
+        <Button onClick={() => onView(Views.WEEK)} variant={activeView === Views.WEEK ? 'primary' : 'outline'}>Week</Button>
+        <Button onClick={() => onView(Views.DAY)} variant={activeView === Views.DAY ? 'primary' : 'outline'}>Day</Button>
+        <Button onClick={() => onView(Views.AGENDA)} variant={activeView === Views.AGENDA ? 'primary' : 'outline'}>Agenda</Button>
       </div>
       <Calendar
         events={events}

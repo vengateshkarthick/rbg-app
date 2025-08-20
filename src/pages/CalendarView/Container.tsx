@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react';
 import { parse } from 'date-fns';
 import type { AppCalendarEvent } from '../../shared/widgets/Calendar';
-import { sampleData } from '../../shared/constant';
+import { sampleData, Views } from './constant';
 import CalendarView, { type CalendarViewProps } from './index';
 
 type DateKey = keyof typeof sampleData;
-type CalendarViewType = 'MONTH' | 'WEEK' | 'DAY' | 'AGENDA';
+type CalendarViewType = `${typeof Views[keyof typeof Views]}`;
 
 export default function CalendarViewContainer() {
   const [selectedDateKey, setSelectedDateKey] = useState<DateKey | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeView, setActiveView] = useState<CalendarViewType>('MONTH');
+  const [activeView, setActiveView] = useState<CalendarViewType>(Views.MONTH);
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
   const events: AppCalendarEvent[] = useMemo(() => {

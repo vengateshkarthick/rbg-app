@@ -18,3 +18,10 @@ export const sampleData = {
         {"user_4": 4}
     ]
 }
+
+export const Views = {
+    MONTH: 'MONTH',
+    WEEK: 'WEEK',
+    DAY: 'DAY',
+    AGENDA: 'AGENDA'
+} as const;
