@@ -1,10 +1,8 @@
-Here’s a comprehensive **README.md** and **package.json** setup for your project, along with guidance on integrating **React Big Calendar** and handling the requirements you specified.
 
----
 
 ## README.md
 
-```markdown
+
 # Calendar 360
 
 **Calendar 360** is a React application that visualizes date-wise data using **React Big Calendar**. Users can view data on a daily, weekly, or monthly basis. Clicking on a date with data will display a bar graph for that date. If no data is available, a warning message is shown.
@@ -170,7 +168,7 @@ MIT
 - Use `react-modal` for the popup.
 - Use `react-chartjs-2` to render the bar graph for the selected date.
 
-### 4. **No Data Warning**
+### 4. **No Data Warning** -- **Not Implemented due to JSON Bin issue**--
 
 - Check if the selected date has data. If not, show a warning using an alert or modal.
 
@@ -203,5 +201,3 @@ const handleSelectEvent = (event) => {
 ```
 
 ---
-
-**Let me know if you need the full component code or further customization!**
