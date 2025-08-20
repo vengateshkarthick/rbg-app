@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 
-const ENV_TOKEN = (import.meta as any).env?.VITE_BEARER_TOKEN ?? (import.meta as any).env?.VITE_BearrerToken ?? '';
+const ENV_TOKEN = (import.meta as any).env?.VITE_BEARER_TOKEN;
 
 export class HttpRequest {
   private axiosInstance: AxiosInstance;
@@ -9,14 +9,15 @@ export class HttpRequest {
   constructor(initialToken: string = ENV_TOKEN) {
     this.bearerToken = initialToken;
     this.axiosInstance = axios.create({
-      // baseURL: import.meta.env.VITE_API_BASE_URL,
+      baseURL: import.meta.env.VITE_API_BASE_URL,
       timeout: 15000
     });
-
     this.axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-      // Ensure headers object exists without violating Axios types
+  
       config.headers = (config.headers ?? ({} as any)) as any;
+      (config.headers as any)['X-Bin-Meta'] = 'false';
       if (this.bearerToken) {
+        // (config.headers as any)['X-Access-Key'] = this.bearerToken;
         (config.headers as any)['X-Master-Key'] = this.bearerToken;
       }
       return config;
