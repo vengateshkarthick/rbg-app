@@ -55,7 +55,7 @@ export default function CalendarViewContainer() {
     }
   };
 
-  const closeModal = () => setIsModalOpen(false);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const labels = useMemo(() => {
     if (!selectedDateKey) return [] as string[];
@@ -78,7 +78,7 @@ export default function CalendarViewContainer() {
     onToday: () => setCurrentDate(new Date()),
     handleSelectEvent,
     isModalOpen,
-    closeModal,
+    handleCloseModal,
     selectedDateKey: (selectedDateKey as string | null),
     labels,
     values

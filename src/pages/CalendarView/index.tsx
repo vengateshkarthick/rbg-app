@@ -13,7 +13,7 @@ export interface CalendarViewProps {
   onToday: () => void;
   handleSelectEvent: Parameters<typeof Calendar>[0]['handleSelectEvent'];
   isModalOpen: boolean;
-  closeModal: () => void;
+  handleCloseModal: () => void;
   selectedDateKey: string | null;
   labels: string[];
   values: number[];
@@ -29,7 +29,7 @@ export default function CalendarView(props: CalendarViewProps) {
     onToday,
     handleSelectEvent,
     isModalOpen,
-    closeModal,
+    handleCloseModal,
     selectedDateKey,
     labels,
     values
@@ -52,7 +52,7 @@ export default function CalendarView(props: CalendarViewProps) {
       />
       <DataViewModal
         isOpen={isModalOpen}
-        onRequestClose={closeModal}
+        onRequestClose={handleCloseModal}
         selectedDateKey={selectedDateKey}
         labels={labels}
         values={values}
