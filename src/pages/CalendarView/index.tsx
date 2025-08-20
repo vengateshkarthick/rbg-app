@@ -46,7 +46,7 @@ export default function CalendarView(props: CalendarViewProps) {
         date={currentDate}
         onView={onView}
         onNavigate={onNavigate}
-        views={[ 'MONTH', 'WEEK', 'DAY', 'AGENDA' ]}
+        views={[ 'MONTH', 'WEEK', 'DAY' ]}
         handleSelectEvent={handleSelectEvent}
         style={{ height: 500 }}
       />

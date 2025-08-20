@@ -62,7 +62,7 @@ export default function Calendar(props: CalendarProps) {
 
     const viewsToUse = (views && views.length > 0
         ? views.map((v) => Views[v])
-        : [Views.MONTH, Views.WEEK, Views.DAY, Views.AGENDA]);
+        : [Views.MONTH, Views.WEEK, Views.DAY]);
 
     const toKeyOfViews = (v: string): keyof typeof Views => {
         const entry = Object.entries(Views).find(([, value]) => value === v);

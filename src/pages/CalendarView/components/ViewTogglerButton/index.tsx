@@ -42,12 +42,6 @@ export default function ViewTogglerButton({
       >
         Day
       </Button>
-      <Button
-        onClick={() => onView(Views.AGENDA)}
-        variant={activeView === Views.AGENDA ? "primary" : "outline"}
-      >
-        Agenda
-      </Button>
     </div>
   );
 }
